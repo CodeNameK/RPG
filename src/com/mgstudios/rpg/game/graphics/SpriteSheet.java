@@ -10,8 +10,14 @@ public class SpriteSheet {
 	public final int SIZE;
 	public int[] pixels;
 	
+	// Characters
 	public static SpriteSheet mainCharacter = new SpriteSheet ("characters/Main", 64);
+	
+	// Outdoors
 	public static SpriteSheet outdoorsA = new SpriteSheet ("outdoors/TileSetA", 256);
+	
+	// Indoors
+	public static SpriteSheet indoorsA = new SpriteSheet ("indoors/TileSetA", 256);
 	
 	public SpriteSheet(String path, int size) {
 		this.path = path;

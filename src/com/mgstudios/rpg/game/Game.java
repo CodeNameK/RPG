@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import com.mgstudios.rpg.game.entity.mob.player.EntityPlayer;
 import com.mgstudios.rpg.game.graphics.Screen;
 import com.mgstudios.rpg.game.level.Level;
-import com.mgstudios.rpg.game.level.RandomLevel;
+import com.mgstudios.rpg.game.level.TileCoordinate;
 import com.mgstudios.rpg.input.Keyboard;
 import com.mgstudios.rpg.input.Mouse;
 import com.mgstudios.rpg.launcher.Launcher;
@@ -25,7 +25,7 @@ public class Game extends Canvas implements Runnable {
 	public double fps = 60.0;
 	
 	public int height = width / aspectRatio[0] * aspectRatio[1];
-	public int scale = 3;
+	public static int scale = 3;
 	
 	private Thread thread;
 	private boolean running;
@@ -41,11 +41,13 @@ public class Game extends Canvas implements Runnable {
 	private Screen screen;
 	private Level level;
 	private EntityPlayer player;
+	private TileCoordinate spawn;
 	
 	public Game() {
 		frame = new JFrame();
 		
 		mouse = new Mouse();
+		Mouse.button = -1;
 		keyboard = new Keyboard();
 		addMouseListener (mouse);
 		addMouseMotionListener (mouse);
@@ -53,8 +55,10 @@ public class Game extends Canvas implements Runnable {
 		addFocusListener (keyboard);
 		
 		screen = new Screen (width, height);
-		level = new RandomLevel (64, 64);
-		player = new EntityPlayer (keyboard);
+		level = Level.spawn;
+		spawn = new TileCoordinate(20, 20);
+		player = new EntityPlayer (spawn.getX(), spawn.getY(), keyboard, screen);
+		player.init(level);
 	}
 	
 	public synchronized void start (JFrame frame) {
@@ -113,6 +117,7 @@ public class Game extends Canvas implements Runnable {
 	private void update() {
 		keyboard.update();
 		player.update();
+		level.update();
 	}
 	
 	private void render() {

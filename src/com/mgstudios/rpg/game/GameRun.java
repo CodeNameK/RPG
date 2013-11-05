@@ -17,7 +17,7 @@ public class GameRun extends JFrame {
 		contentPane = getContentPane();
 		
 		frame.setUndecorated(false);
-		frame.setSize((game.width * game.scale), (game.height * game.scale));
+		frame.setSize((game.width * Game.scale), (game.height * Game.scale));
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setResizable(false);

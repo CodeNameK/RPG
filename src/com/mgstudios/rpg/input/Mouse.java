@@ -5,10 +5,13 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class Mouse implements MouseListener, MouseMotionListener {
-	public static int xPos, yPos, button;
+	public static int xPos, yPos, button = -1;
 	
 	@Override
-	public void mouseDragged(MouseEvent e) {}
+	public void mouseDragged(MouseEvent e) {
+		xPos = e.getX();
+		yPos = e.getY();
+	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {

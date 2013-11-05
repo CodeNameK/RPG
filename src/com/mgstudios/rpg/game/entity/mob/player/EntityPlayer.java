@@ -1,22 +1,27 @@
 package com.mgstudios.rpg.game.entity.mob.player;
 
+import com.mgstudios.rpg.game.Game;
 import com.mgstudios.rpg.game.entity.mob.EntityMob;
 import com.mgstudios.rpg.game.graphics.Screen;
 import com.mgstudios.rpg.game.graphics.Sprite;
 import com.mgstudios.rpg.input.Keyboard;
+import com.mgstudios.rpg.input.Mouse;
 
 public class EntityPlayer extends EntityMob {
 	private Keyboard input;
 	private Sprite sprite;
 	private int anim = 0;
+	private Screen screen;
 	
-	public EntityPlayer(Keyboard input) {
+	public EntityPlayer(Keyboard input, Screen screen) {
 		this.input = input;
+		this.screen = screen;
 		sprite = Sprite.player_up[0];
 	}
 	
-	public EntityPlayer (int x, int y, Keyboard input) {
+	public EntityPlayer (int x, int y, Keyboard input, Screen screen) {
 		this.input = input;
+		this.screen = screen;
 		this.x = x;
 		this.y = y;
 		sprite = Sprite.player_up[0];
@@ -38,6 +43,18 @@ public class EntityPlayer extends EntityMob {
 			moving = true;
 		} else {
 			moving = false;
+		}
+		
+		updateShooting();
+	}
+	
+	private void updateShooting() {		
+		if (Mouse.button == 1) {
+			double dirX = Mouse.xPos - ((screen.width * Game.scale) / 2);
+			double dirY = Mouse.yPos - ((screen.height * Game.scale) / 2);
+			double dir = Math.atan2(dirY, dirX);
+			
+			shoot (x, y, dir);
 		}
 	}
 	

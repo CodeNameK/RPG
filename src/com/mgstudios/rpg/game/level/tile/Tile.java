@@ -21,11 +21,11 @@ public class Tile {
 	public static final int col_hedge = 0; // Unused
 	
 	public static Tile floor = new Tile (Sprite.floor);
-	public static final int col_floor = 0xff650000;
+	public static final int col_floor = 0xff800000;
 	public static Tile wall_1 = new Tile (Sprite.wall_1).setSolid(true);
-	public static final int col_wall_1 = 0xff404040;
+	public static final int col_wall_1 = 0xff000000;
 	public static Tile wall_2 = new Tile (Sprite.wall_2).setSolid(true);
-	public static final int col_wall_2 = 0xff000000;
+	public static final int col_wall_2 = 0xff808080;
 	
 	public Tile (Sprite sprite) {
 		this.sprite = sprite;

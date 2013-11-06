@@ -14,7 +14,7 @@ public class Level {
 	
 	private List<Entity> entities = new ArrayList<Entity>();
 	
-	public static Level spawn = new SpawnLevel("spawn");
+	public static Level spawn = new SpawnLevel("spawn/spawn_hub");
 	
 	public Level (int width, int height) {
 		this.width = width;
@@ -65,8 +65,6 @@ public class Level {
 	public Tile getTile (int x, int y) {
 		if (x < 0 || x >= width || y < 0 || y >= height) return Tile.voidTile;
 		if (tiles[x + y * width] == Tile.col_grass) return Tile.grass;
-		if (tiles[x + y * width] == Tile.col_flower) return Tile.flower;
-		if (tiles[x + y * width] == Tile.col_rock) return Tile.rock;
 		if (tiles[x + y * width] == Tile.col_floor) return Tile.floor;
 		if (tiles[x + y * width] == Tile.col_wall_1) return Tile.wall_1;
 		if (tiles[x + y * width] == Tile.col_wall_2) return Tile.wall_2;
